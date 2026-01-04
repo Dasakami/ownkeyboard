@@ -30,8 +30,6 @@ class MainActivity : AppCompatActivity() {
         sectionSize = findViewById(R.id.sectionSize)
         sectionTheme = findViewById(R.id.sectionTheme)
         sectionFeedback = findViewById(R.id.sectionFeedback)
-        
-        // Показать нужный раздел
         val section = intent.getStringExtra("section") ?: "full"
         showSection(section)
         
@@ -58,7 +56,6 @@ class MainActivity : AppCompatActivity() {
                 sectionFeedback.visibility = View.VISIBLE
             }
             else -> {
-                // Показать все
                 sectionSize.visibility = View.VISIBLE
                 sectionTheme.visibility = View.VISIBLE
                 sectionFeedback.visibility = View.VISIBLE
@@ -67,36 +64,28 @@ class MainActivity : AppCompatActivity() {
     }
     
     private fun initViews() {
-        // Кнопки фона
         findViewById<Button>(R.id.uploadBgButton).setOnClickListener { pickImage() }
         findViewById<Button>(R.id.removeBgButton).setOnClickListener { removeBackground() }
-        
-        // Кнопки тем
         findViewById<Button>(R.id.themeLightButton).setOnClickListener { applyTheme("light") }
         findViewById<Button>(R.id.themeDarkButton).setOnClickListener { applyTheme("dark") }
         findViewById<Button>(R.id.themeBlueButton).setOnClickListener { applyTheme("blue") }
         findViewById<Button>(R.id.themeGreenButton).setOnClickListener { applyTheme("green") }
-        
-        // Сброс
         findViewById<Button>(R.id.resetButton).setOnClickListener { resetSettings() }
     }
     
     private fun loadSettings() {
-        // Размер
         val scale = prefs.keyboardScale
         val scaleSeekBar = findViewById<SeekBar>(R.id.scaleSeekBar)
         val scaleText = findViewById<TextView>(R.id.scaleText)
         scaleSeekBar.progress = ((scale - 0.6f) * 100).toInt()
         scaleText.text = "Размер: ${String.format("%.1f", scale)}x"
         
-        // Высота клавиш
         val keyHeight = prefs.keyHeight
         val keyHeightSeekBar = findViewById<SeekBar>(R.id.keyHeightSeekBar)
         val keyHeightText = findViewById<TextView>(R.id.keyHeightText)
         keyHeightSeekBar.progress = keyHeight - 40
         keyHeightText.text = "Высота клавиш: ${keyHeight}dp"
         
-        // Отступы
         val hGap = prefs.horizontalGap
         val hGapSeekBar = findViewById<SeekBar>(R.id.hGapSeekBar)
         val hGapText = findViewById<TextView>(R.id.hGapText)
@@ -109,18 +98,15 @@ class MainActivity : AppCompatActivity() {
         vGapSeekBar.progress = vGap
         vGapText.text = "Вертикальный: ${vGap}dp"
         
-        // Вибрация
         val vibDuration = prefs.vibrationDuration
         val vibrationDurationSeekBar = findViewById<SeekBar>(R.id.vibrationDurationSeekBar)
         val vibDurationText = findViewById<TextView>(R.id.vibDurationText)
         vibrationDurationSeekBar.progress = (vibDuration - 10).toInt()
         vibDurationText.text = "Длительность: ${vibDuration}ms"
         
-        // Переключатели
         findViewById<Switch>(R.id.soundSwitch).isChecked = prefs.soundEnabled
         findViewById<Switch>(R.id.vibrationSwitch).isChecked = prefs.vibrationEnabled
         
-        // Фон
         val bgPath = prefs.backgroundImage
         if (!bgPath.isNullOrEmpty() && File(bgPath).exists()) {
             val bitmap = BitmapFactory.decodeFile(bgPath)

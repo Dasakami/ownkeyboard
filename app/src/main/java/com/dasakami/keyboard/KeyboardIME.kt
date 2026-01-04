@@ -44,7 +44,7 @@ class KeyboardIME : InputMethodService(), KeyboardView.OnKeyboardActionListener 
     private val deleteRunnable = object : Runnable {
         override fun run() {
             currentInputConnection?.deleteSurroundingText(1, 0)
-            deleteHandler.postDelayed(this, 50) // Быстрое удаление
+            deleteHandler.postDelayed(this, 50) 
         }
     }
     
@@ -84,7 +84,6 @@ class KeyboardIME : InputMethodService(), KeyboardView.OnKeyboardActionListener 
     }
     
     private fun createKeyboard(xmlRes: Int): Keyboard {
-        // Создаём клавиатуру БЕЗ изменения protected полей
         return Keyboard(this, xmlRes)
     }
     
@@ -216,7 +215,6 @@ class KeyboardIME : InputMethodService(), KeyboardView.OnKeyboardActionListener 
                 }
                 .show()
         } catch (e: Exception) {
-            // Если не получается показать диалог, сразу открываем настройки
             openSettings("full")
         }
     }
@@ -256,7 +254,6 @@ class KeyboardIME : InputMethodService(), KeyboardView.OnKeyboardActionListener 
         when (primaryCode) {
             Keyboard.KEYCODE_DELETE -> {
                 if (ctrlPressed) {
-                    // Ctrl+Backspace - удалить слово
                     deleteWord()
                 } else {
                     ic.deleteSurroundingText(1, 0)
@@ -269,7 +266,6 @@ class KeyboardIME : InputMethodService(), KeyboardView.OnKeyboardActionListener 
             Keyboard.KEYCODE_MODE_CHANGE -> switchToMode("symbols")
             Keyboard.KEYCODE_CANCEL -> requestHideSelf(0)
             
-            // Специальные клавиши программирования
             -101 -> { ctrlPressed = !ctrlPressed; showModifierState() }
             -102 -> { altPressed = !altPressed; showModifierState() }
             -103 -> sendKeyEvent(KeyEvent.KEYCODE_TAB)
@@ -278,26 +274,24 @@ class KeyboardIME : InputMethodService(), KeyboardView.OnKeyboardActionListener 
             -106 -> ic.commitText("{}", 1)
             -107 -> ic.commitText("[]", 1)
             -108 -> ic.commitText("()", 1)
-            -109 -> sendKeyEvent(KeyEvent.KEYCODE_MOVE_HOME) // Home
-            -110 -> sendKeyEvent(KeyEvent.KEYCODE_MOVE_END) // End
-            -111 -> sendKeyEvent(KeyEvent.KEYCODE_DPAD_LEFT) // ←
-            -112 -> sendKeyEvent(KeyEvent.KEYCODE_DPAD_RIGHT) // →
-            -113 -> sendKeyEvent(KeyEvent.KEYCODE_DPAD_UP) // ↑
-            -114 -> sendKeyEvent(KeyEvent.KEYCODE_DPAD_DOWN) // ↓
-            -115 -> sendKeyEvent(KeyEvent.KEYCODE_PAGE_UP) // Page Up
-            -116 -> sendKeyEvent(KeyEvent.KEYCODE_PAGE_DOWN) // Page Down
+            -109 -> sendKeyEvent(KeyEvent.KEYCODE_MOVE_HOME) 
+            -110 -> sendKeyEvent(KeyEvent.KEYCODE_MOVE_END) 
+            -111 -> sendKeyEvent(KeyEvent.KEYCODE_DPAD_LEFT) 
+            -112 -> sendKeyEvent(KeyEvent.KEYCODE_DPAD_RIGHT) 
+            -113 -> sendKeyEvent(KeyEvent.KEYCODE_DPAD_UP) 
+            -114 -> sendKeyEvent(KeyEvent.KEYCODE_DPAD_DOWN) 
+            -115 -> sendKeyEvent(KeyEvent.KEYCODE_PAGE_UP) 
+            -116 -> sendKeyEvent(KeyEvent.KEYCODE_PAGE_DOWN) 
             
-            // F клавиши
             in -131..-120 -> {
                 val fKey = KeyEvent.KEYCODE_F1 + (-120 - primaryCode)
                 sendKeyEvent(fKey)
             }
             
-            // Ctrl комбинации
             in -201..-200 -> {
                 when (primaryCode) {
-                    -200 -> sendCtrlKey(KeyEvent.KEYCODE_C) // Ctrl+C
-                    -201 -> sendCtrlKey(KeyEvent.KEYCODE_V) // Ctrl+V
+                    -200 -> sendCtrlKey(KeyEvent.KEYCODE_C) 
+                    -201 -> sendCtrlKey(KeyEvent.KEYCODE_V) 
                 }
             }
             
@@ -305,12 +299,10 @@ class KeyboardIME : InputMethodService(), KeyboardView.OnKeyboardActionListener 
                 var code = primaryCode.toChar()
                 
                 if (ctrlPressed) {
-                    // Обработка Ctrl+клавиша
                     sendCtrlKey(primaryCode)
                     ctrlPressed = false
                     showModifierState()
                 } else if (altPressed) {
-                    // Обработка Alt+клавиша
                     sendAltKey(primaryCode)
                     altPressed = false
                     showModifierState()
@@ -320,7 +312,6 @@ class KeyboardIME : InputMethodService(), KeyboardView.OnKeyboardActionListener 
                     }
                     ic.commitText(code.toString(), 1)
                     
-                    // Сохранить в историю буфера при копировании
                     val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as android.content.ClipboardManager
                     clipboard.addPrimaryClipChangedListener {
                         val clip = clipboard.primaryClip
@@ -332,7 +323,6 @@ class KeyboardIME : InputMethodService(), KeyboardView.OnKeyboardActionListener 
                         }
                     }
                     
-                    // Отключить caps после одной буквы
                     if (caps && !capsLock) {
                         caps = false
                         keyboard?.isShifted = false
@@ -346,19 +336,16 @@ class KeyboardIME : InputMethodService(), KeyboardView.OnKeyboardActionListener 
     private fun handleShift() {
         when {
             capsLock -> {
-                // Третий раз нажали - выключаем CapsLock
                 capsLock = false
                 caps = false
                 Toast.makeText(this, "CAPS LOCK ВЫКЛ", Toast.LENGTH_SHORT).show()
             }
             caps -> {
-                // Второй раз нажали - включаем CapsLock
                 capsLock = true
                 caps = true
                 Toast.makeText(this, "CAPS LOCK ВКЛ", Toast.LENGTH_SHORT).show()
             }
             else -> {
-                // Первый раз - обычный Caps
                 caps = true
                 capsLock = false
             }
@@ -449,7 +436,7 @@ class KeyboardIME : InputMethodService(), KeyboardView.OnKeyboardActionListener 
     override fun onPress(primaryCode: Int) {
         if (primaryCode == Keyboard.KEYCODE_DELETE) {
             isDeleting = true
-            deleteHandler.postDelayed(deleteRunnable, 500) // Начать быстрое удаление через 500ms
+            deleteHandler.postDelayed(deleteRunnable, 500) 
         }
     }
     

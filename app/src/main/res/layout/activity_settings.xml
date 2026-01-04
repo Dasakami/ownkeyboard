@@ -19,7 +19,6 @@
             android:textColor="#212121"
             android:layout_marginBottom="20dp" />
         
-        <!-- РАЗДЕЛ: РАЗМЕРЫ -->
         <LinearLayout
             android:id="@+id/sectionSize"
             android:layout_width="match_parent"
@@ -134,7 +133,6 @@
             </LinearLayout>
         </LinearLayout>
         
-        <!-- РАЗДЕЛ: ТЕМЫ И ФОН -->
         <LinearLayout
             android:id="@+id/sectionTheme"
             android:layout_width="match_parent"
@@ -262,8 +260,6 @@
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
-        
-        <!-- РАЗДЕЛ: ОБРАТНАЯ СВЯЗЬ -->
         <LinearLayout
             android:id="@+id/sectionFeedback"
             android:layout_width="match_parent"

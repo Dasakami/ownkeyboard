@@ -16,6 +16,5 @@ class CustomKeyboardView @JvmOverloads constructor(
     
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        // Можно добавить свою отрисовку если нужно
     }
 }

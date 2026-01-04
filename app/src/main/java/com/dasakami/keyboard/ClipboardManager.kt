@@ -10,10 +10,9 @@ class ClipboardManager(private val context: Context) {
         if (text.isBlank()) return
         
         val history = getHistory().toMutableList()
-        history.remove(text) // Удаляем дубликаты
-        history.add(0, text) // Добавляем в начало
+        history.remove(text) 
+        history.add(0, text)
         
-        // Сохраняем только последние 5
         val toSave = history.take(5)
         prefs.edit().apply {
             clear()
