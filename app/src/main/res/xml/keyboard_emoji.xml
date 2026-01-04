@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Keyboard xmlns:android="http://schemas.android.com/apk/res/android"
+    android:keyWidth="12.5%p"
+    android:keyHeight="60dp"
+    android:horizontalGap="1dp"
+    android:verticalGap="2dp">
+    <Row>
+        <Key android:codes="-200" android:keyLabel="😀" />
+        <Key android:codes="-201" android:keyLabel="😂" />
+        <Key android:codes="-202" android:keyLabel="🥰" />
+        <Key android:codes="-203" android:keyLabel="😍" />
+        <Key android:codes="-204" android:keyLabel="😊" />
+        <Key android:codes="-205" android:keyLabel="🤔" />
+        <Key android:codes="-206" android:keyLabel="👍" />
+        <Key android:codes="-207" android:keyLabel="❤️" />
+    </Row>
+    <Row>
+        <Key android:codes="-208" android:keyLabel="🔥" />
+        <Key android:codes="-209" android:keyLabel="✨" />
+        <Key android:codes="-210" android:keyLabel="💯" />
+        <Key android:codes="-211" android:keyLabel="🎉" />
+        <Key android:codes="-212" android:keyLabel="👌" />
+        <Key android:codes="-213" android:keyLabel="🙏" />
+        <Key android:codes="-214" android:keyLabel="💪" />
+        <Key android:codes="-215" android:keyLabel="🚀" />
+    </Row>
+    <Row>
+        <Key android:codes="128128" android:keyLabel="💀" />
+        <Key android:codes="128514" android:keyLabel="😂" />
+        <Key android:codes="129395" android:keyLabel="🤣" />
+        <Key android:codes="128525" android:keyLabel="😍" />
+        <Key android:codes="128536" android:keyLabel="😘" />
+        <Key android:codes="129392" android:keyLabel="🤐" />
+        <Key android:codes="128079" android:keyLabel="👏" />
+        <Key android:codes="-5" android:keyLabel="⌫" />
+    </Row>
+    <Row>
+        <Key android:codes="-2" android:keyLabel="АБВ" android:keyWidth="20%p" />
+        <Key android:codes="32" android:keyLabel="space" android:keyWidth="60%p" />
+        <Key android:codes="-4" android:keyLabel="↵" android:keyWidth="20%p" />
+    </Row>
+</Keyboard>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.dasakami.keyboard.CustomKeyboardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/keyboard"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:keyBackground="@drawable/key_bg"
+    android:keyTextColor="#212121"
+    android:keyTextSize="18sp"
+    android:background="#ECEFF1" />
